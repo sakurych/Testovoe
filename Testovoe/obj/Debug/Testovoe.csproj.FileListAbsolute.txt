@@ -1,0 +1,13 @@
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\bin\Debug\Database1.mdf
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\bin\Debug\Database1_log.ldf
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\bin\Debug\Testovoe.exe.config
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\bin\Debug\Testovoe.exe
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\bin\Debug\Testovoe.pdb
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.csproj.AssemblyReference.cache
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.csproj.SuggestedBindingRedirects.cache
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.Form1.resources
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.Properties.Resources.resources
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.csproj.GenerateResource.cache
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.csproj.CoreCompileInputs.cache
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.exe
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.pdb
