@@ -9,6 +9,11 @@ namespace Testovoe
 {
     internal class Db_CMD
     {
+        public static int sumRKK = 0;
+        public static int sumObr = 0;
+        public static int total = 0;
+        public static int count = 0;
+
         public void addRKK(string otv_, int count_)
         {
             DbConnect db = new DbConnect();
@@ -75,6 +80,7 @@ namespace Testovoe
                 while (reader.Read())
                 {
                     list.Add((int)(reader.GetValue(0)));
+                    sumRKK += (int)reader.GetValue(0);
                 }
             }
             reader.Close();
@@ -87,6 +93,7 @@ namespace Testovoe
                 while (reader1.Read())
                 {
                     list1.Add((int)(reader1.GetValue(0)));
+                    sumObr += (int)(reader1.GetValue(0));
                 }
             }
             reader1.Close();
@@ -94,7 +101,10 @@ namespace Testovoe
             for(int i =0; i < list.Count; i++)
             {
                 list[i] = list[i] + list1[i];
+                total += list[i];
             }
+
+            count = list.Count + 1;
 
             for (int i = 0; i < list.Count; i++)
             {

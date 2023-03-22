@@ -11,3 +11,4 @@ C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.csproj.Gener
 C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.csproj.CoreCompileInputs.cache
 C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.exe
 C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.pdb
+C:\Users\Sakurych\source\repos\Testovoe\Testovoe\obj\Debug\Testovoe.csproj.ResolveComReference.cache
