@@ -14,7 +14,7 @@ namespace Testovoe
         public static int total = 0;
         public static int count = 0;
 
-        public void addRKK(string otv_, int count_)
+        public void addRKK(string otv_)
         {
             DbConnect db = new DbConnect();
             db.ConnectSql();
@@ -24,22 +24,20 @@ namespace Testovoe
             command.Parameters.AddWithValue("Otv", otv_);
             if ((int)command.ExecuteScalar() != 0)
             {
-                SqlCommand cmd = new SqlCommand("UPDATE [Table] SET RKK = RKK + @count WHERE Otv=@Otv", db.sqlConnection);
-                cmd.Parameters.AddWithValue ("count", count_);
+                SqlCommand cmd = new SqlCommand("UPDATE [Table] SET RKK = RKK + 1 WHERE Otv=@Otv", db.sqlConnection);
                 cmd.Parameters.AddWithValue ("Otv", otv_);
                 cmd.ExecuteNonQuery();
             }
             else
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO [Table] (Otv, RKK, Obrach) VALUES (@Otv, @RKK, 0)", db.sqlConnection);
-                cmd.Parameters.AddWithValue ("RKK", count_);
+                SqlCommand cmd = new SqlCommand("INSERT INTO [Table] (Otv, RKK, Obrach) VALUES (@Otv, 1, 0)", db.sqlConnection);
                 cmd.Parameters.AddWithValue("Otv", otv_);
                 cmd.ExecuteNonQuery();
             }
             db.sqlConnection.Close();
         }
 
-        public void addObr(string otv_, int count_)
+        public void addObr(string otv_)
         {
             DbConnect db = new DbConnect();
             db.ConnectSql();
@@ -49,15 +47,13 @@ namespace Testovoe
             command.Parameters.AddWithValue("Otv", otv_);
             if ((int)command.ExecuteScalar() != 0)
             {
-                SqlCommand cmd = new SqlCommand("UPDATE [Table] SET Obrach = Obrach + @count WHERE Otv=@Otv", db.sqlConnection);
-                cmd.Parameters.AddWithValue("count", count_);
+                SqlCommand cmd = new SqlCommand("UPDATE [Table] SET Obrach = Obrach + 1 WHERE Otv=@Otv", db.sqlConnection);
                 cmd.Parameters.AddWithValue("Otv", otv_);
                 cmd.ExecuteNonQuery();
             }
             else
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO [Table] (Otv, Obrach, RKK) VALUES (@Otv, @Obrach, 0)", db.sqlConnection);
-                cmd.Parameters.AddWithValue("Obrach", count_);
+                SqlCommand cmd = new SqlCommand("INSERT INTO [Table] (Otv, Obrach, RKK) VALUES (@Otv, 1, 0)", db.sqlConnection);
                 cmd.Parameters.AddWithValue("Otv", otv_);
                 cmd.ExecuteNonQuery();
             }

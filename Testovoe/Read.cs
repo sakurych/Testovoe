@@ -14,23 +14,37 @@ namespace Testovoe
         {
             using (StreamReader reader = new StreamReader(path))
             {
-                int count = 0;
                 string line;
+                string str;
+                string str1 = " ";
                 while ((line = reader.ReadLine()) != null)
                 {
-                    Team team= new Team();
+                    Team team = new Team();
                     team.RK = line.Substring(0, line.IndexOf('\t'));
                     if(team.RK != "Климов Сергей Александрович")
                     {
-                        team.Otv = team.RK;
+                        str = line.Substring(0, line.IndexOf('\t'));
+                        for (int i = 0; i < str.Count(); i++)
+                        {
+                            char s = str[i];
+                            if (char.IsUpper(s) == true)
+                            {
+                                StringBuilder sb = new StringBuilder(str1);
+                                sb.Append(s);
+                                sb.Append('.');
+                                str1 = sb.ToString();
+                            }
+                        }
+                        str1 = str1.Remove(1, 2);
+                        team.Otv = team.RK.ToString().Substring(0, line.IndexOf(' ')) + str1;
+                        str1 = " ";
                     }
                     else
                     {
                         team.Otv = line.Substring(line.IndexOf('\t') + 1, ((line.IndexOf('.') + 2) - line.IndexOf('\t')));
                     }
-                    count = (line.ToCharArray().Where(c => c == ';').Count() + 1) - line.ToCharArray().Where(c => c == '(').Count();
                     Db_CMD cmd = new Db_CMD();
-                    cmd.addRKK(team.Otv, count);
+                    cmd.addRKK(team.Otv);
                 }
             }
         }
@@ -39,26 +53,39 @@ namespace Testovoe
         {
             using (StreamReader reader = new StreamReader(path))
             {
-                int count = 0;
                 string line;
+                string str;
+                string str1 = " ";
                 while ((line = reader.ReadLine()) != null)
                 {
                     Team team = new Team();
                     team.RK = line.Substring(0, line.IndexOf('\t'));
                     if (team.RK != "Климов Сергей Александрович")
                     {
-                        team.Otv = team.RK;
+                        str = line.Substring(0, line.IndexOf('\t'));
+                        for (int i = 0; i < str.Count(); i++)
+                        {
+                            char s = str[i];
+                            if (char.IsUpper(s) == true)
+                            {
+                                StringBuilder sb = new StringBuilder(str1);
+                                sb.Append(s);
+                                sb.Append('.');
+                                str1 = sb.ToString();
+                            }
+                        }
+                        str1 = str1.Remove(1, 2);
+                        team.Otv = team.RK.ToString().Substring(0, line.IndexOf(' ')) + str1;
+                        str1 = " ";
                     }
                     else
                     {
                         team.Otv = line.Substring(line.IndexOf('\t') + 1, ((line.IndexOf('.') + 2) - line.IndexOf('\t')));
                     }
-                    count = (line.ToCharArray().Where(c => c == ';').Count() + 1) - line.ToCharArray().Where(c => c == '(').Count();
                     Db_CMD cmd = new Db_CMD();
-                    cmd.addObr(team.Otv, count);
+                    cmd.addObr(team.Otv);
                 }
             }
         }
-
     }
 }

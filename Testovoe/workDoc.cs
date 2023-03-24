@@ -17,20 +17,13 @@ namespace Testovoe
     {
         public void work(DataGridView dg)
         {
-            // Получить объект приложения Word.
-
             Word._Application word_app = new Word.ApplicationClass();
-
-            // Создаем документ Word.
 
             object missing = Type.Missing;
 
             Word._Document word_doc = word_app.Documents.Add(
 
                 ref missing, ref missing, ref missing, ref missing);
-
-
-            // Создаем абзац заголовка.
 
             Word.Paragraph para = word_doc.Paragraphs.Add(ref missing);
 
@@ -103,12 +96,12 @@ namespace Testovoe
             tbl.Cell(1, 5).Range.Text = "Общее количество документов и обращений";
             tbl.Range.Font.Bold = 0;
 
-            int ii = 0;
+            int ii = 1;
             for(int i = 2; ii< dg.Rows.Count; i++)
             {
-                ii = i - 1;
                 tbl.Cell(i, 1).Range.Text =  ii.ToString();
                 tbl.Cell(i, 1).Range.Font.Name = "Arial";
+                ii++;
             }
             int j = 2;
             int ci = 0;
@@ -116,7 +109,6 @@ namespace Testovoe
             {
                 tbl.Cell(i, j).Range.Text = dg.Rows[ci].Cells[1].Value.ToString() + "\t";
                 tbl.Cell(i, j).Range.Font.Name = "Arial";
-                string str1 = dg.Rows[ci].Cells[1].ToString();
                 j++;
                 tbl.Cell(i, j).Range.Text = dg.Rows[ci].Cells[2].Value.ToString() + "\t";
                 tbl.Cell(i, j).Range.Font.Name = "Arial";
@@ -136,8 +128,6 @@ namespace Testovoe
             para.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
             para.Range.Font.Bold = 0;
             para.Range.Text = "Дата составления справки:\t " + Form1.time.ToString("dd.MM.yyyy");
-            Word.Range rng4 = word_doc.Range(1828, 1838);
-            rng4.Font.Bold = 2;
 
             word_doc.Save();
 

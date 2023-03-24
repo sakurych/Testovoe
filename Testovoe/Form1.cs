@@ -17,6 +17,8 @@ namespace Testovoe
 {
     public partial class Form1 : Form
     {
+        public static string path1;
+        public static string path2;
         public static DateTime time = DateTime.Now;
 
         public Form1()
@@ -37,6 +39,30 @@ namespace Testovoe
             label3.Visible = false;
             label4.Visible = false;
             button1.Visible = false;
+            Start.Visible = false;
+            labelFirstFile.Visible = false;
+            labelSecondFile.Visible = false;
+        }
+
+        private void Start_Click(object sender, EventArgs e)
+        {
+            labelFirstFile.Visible = false;
+            labelSecondFile.Visible = false;
+            firstFile.Visible = false;
+            secondFile.Visible = false;
+            var sw = new Stopwatch();
+            sw.Start();
+            Db_CMD cMD = new Db_CMD();
+            cMD.clearTable();
+            Read read = new Read();
+            read.readRKK(path1);
+            read.readObr(path2);
+            cMD.setSum();
+            sw.Stop();
+            textBox2.Text = path1;
+            textBox3.Text = path2;
+
+            textBox1.Text = sw.Elapsed.ToString();
 
             DbConnect db = new DbConnect();
             db.ConnectSql();
@@ -47,25 +73,6 @@ namespace Testovoe
             dataAdapter.Fill(dataSet);
 
             dataGridView1.DataSource = dataSet.Tables[0];
-        }
-
-        private void Start_Click(object sender, EventArgs e)
-        {
-            var sw = new Stopwatch();
-            sw.Start();
-            Db_CMD cMD = new Db_CMD();
-            cMD.clearTable();
-            Read read = new Read();
-            string path1 = "/Users/Sakurych/Desktop/Тестовое задание/Тестовое задание - РКК.txt";
-            string path2 = "/Users/Sakurych/Desktop/Тестовое задание/Тестовое задание - Обращения.txt";
-            read.readRKK(path1);
-            read.readObr(path2);
-            cMD.setSum();
-            sw.Stop();
-            textBox2.Text = path1;
-            textBox3.Text = path2;
-
-            textBox1.Text = sw.Elapsed.ToString();
 
             textBox1.Visible=true;
             Start.Visible= false;
@@ -121,7 +128,6 @@ namespace Testovoe
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"Otv LIKE '%{textBox1.Text}%'";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -134,6 +140,50 @@ namespace Testovoe
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void firstFile_Click(object sender, EventArgs e)
+        {
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                labelFirstFile.Text = "Имя первого файла: " + Path.GetFileName(openFileDialog1.FileName);
+                if(Path.GetFileName(openFileDialog1.FileName) == "Тестовое задание - РКК.txt")
+                {
+                    path1 = openFileDialog1.FileName;
+                }
+                else 
+                {
+                   path2 = openFileDialog1.FileName;
+                }
+                labelFirstFile.Visible = true;
+
+                if (labelFirstFile.Visible == true & labelSecondFile.Visible == true)
+                {
+                    Start.Visible = true;
+                }
+            }
+        }
+
+        private void secondFile_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                labelSecondFile.Text = "Имя второго файла: " + Path.GetFileName(openFileDialog1.FileName);
+                if (Path.GetFileName(openFileDialog1.FileName) == "Тестовое задание - Обращения.txt")
+                {
+                    path2 = openFileDialog1.FileName;
+                }
+                else
+                {
+                    path1 = openFileDialog1.FileName;
+                }
+                labelSecondFile.Visible = true;
+
+                if (labelFirstFile.Visible == true & labelSecondFile.Visible == true)
+                {
+                    Start.Visible = true;
+                }
+            }
         }
     }
 }
